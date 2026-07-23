@@ -1,0 +1,210 @@
+{
+  "source": "한국도로교통공단, 화물차 교통사고 다발지역 정보, 공공데이터포털",
+  "endpoint": "https://opendata.koroad.or.kr/data/rest/frequentzone/truck",
+  "queried_at": "2026-07-20 22:01:01",
+  "sido": "43",
+  "districts": [
+    {
+      "code": "111",
+      "name": "청주시 상당구"
+    },
+    {
+      "code": "112",
+      "name": "청주시 서원구"
+    },
+    {
+      "code": "113",
+      "name": "청주시 흥덕구"
+    },
+    {
+      "code": "114",
+      "name": "청주시 청원구"
+    },
+    {
+      "code": "750",
+      "name": "진천군"
+    },
+    {
+      "code": "770",
+      "name": "음성군"
+    }
+  ],
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "selection_criteria": "최근 3년 중상 중심 화물차 교통사고, 반경 100m 내 4건 이상 (원 데이터 명칭 '사망·중상' — 수집 10개 지점 전부 사망 0명)",
+  "total_spots": 10,
+  "request_log": [
+    {
+      "year": 2021,
+      "gugun": "111",
+      "name": "청주시 상당구",
+      "result": "00:NORMAL_CODE",
+      "n": 3
+    },
+    {
+      "year": 2021,
+      "gugun": "112",
+      "name": "청주시 서원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2021,
+      "gugun": "113",
+      "name": "청주시 흥덕구",
+      "result": "00:NORMAL_CODE",
+      "n": 1
+    },
+    {
+      "year": 2021,
+      "gugun": "114",
+      "name": "청주시 청원구",
+      "result": "00:NORMAL_CODE",
+      "n": 1
+    },
+    {
+      "year": 2021,
+      "gugun": "750",
+      "name": "진천군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2021,
+      "gugun": "770",
+      "name": "음성군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2022,
+      "gugun": "111",
+      "name": "청주시 상당구",
+      "result": "00:NORMAL_CODE",
+      "n": 1
+    },
+    {
+      "year": 2022,
+      "gugun": "112",
+      "name": "청주시 서원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2022,
+      "gugun": "113",
+      "name": "청주시 흥덕구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2022,
+      "gugun": "114",
+      "name": "청주시 청원구",
+      "result": "00:NORMAL_CODE",
+      "n": 1
+    },
+    {
+      "year": 2022,
+      "gugun": "750",
+      "name": "진천군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2022,
+      "gugun": "770",
+      "name": "음성군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2023,
+      "gugun": "111",
+      "name": "청주시 상당구",
+      "result": "00:NORMAL_CODE",
+      "n": 2
+    },
+    {
+      "year": 2023,
+      "gugun": "112",
+      "name": "청주시 서원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2023,
+      "gugun": "113",
+      "name": "청주시 흥덕구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2023,
+      "gugun": "114",
+      "name": "청주시 청원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2023,
+      "gugun": "750",
+      "name": "진천군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2023,
+      "gugun": "770",
+      "name": "음성군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2024,
+      "gugun": "111",
+      "name": "청주시 상당구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2024,
+      "gugun": "112",
+      "name": "청주시 서원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2024,
+      "gugun": "113",
+      "name": "청주시 흥덕구",
+      "result": "00:NORMAL_CODE",
+      "n": 1
+    },
+    {
+      "year": 2024,
+      "gugun": "114",
+      "name": "청주시 청원구",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2024,
+      "gugun": "750",
+      "name": "진천군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    },
+    {
+      "year": 2024,
+      "gugun": "770",
+      "name": "음성군",
+      "result": "03:NODATA_ERROR",
+      "n": 0
+    }
+  ]
+}

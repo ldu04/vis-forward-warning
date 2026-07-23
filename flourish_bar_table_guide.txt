@@ -1,0 +1,24 @@
+[가장 단순] flourish_mean_only.csv — 열 4개만(평균 거리·평균 반응시간·BC사고율), 행 2개.
+  막대 3개 만들 거면 차트를 3개 두고 각각 Y열을 바꿔 매핑하거나, 표로만 쓰면 한 번에 끝.
+
+[상세 한 파일] flourish_report_one_sheet.csv
+  같은 스프레드시트로 막대 + 표를 각각 만들되, 데이터 소스는 이 파일 하나만 쓰면 됨.
+
+[막대그래프] 평균 제동거리
+  템플릿: Column chart → 데이터 소스: flourish_report_one_sheet.csv
+  개선 효과 행 제외: Data 시트에서 Gain 행 삭제 또는 Controls에서 row_kind = bar_and_table 만 표시(가능할 때)
+  Labels(X): scenario
+  Values(Y): mean_total_distance_m
+  Error bars: std_total_distance_m
+
+[표] 전체 수치
+  템플릿: Table → flourish_report_one_sheet.csv 업로드 (열 전체 표시)
+  열 설명:
+    mean/std/max_total_distance_m = C 이동거리(m)
+    mean/std_reaction_time_s = A 감속 후 C 감속 시작까지(s)
+    bc_collision_count / bc_collision_pct = BC 추돌
+    ab_collision_count = AB 추돌(참고, 두 조건 동일)
+  Gain 행: std·ab·n_trials 는 빈 칸, bc_collision_count=건수 차, bc_collision_pct=퍼섭포인트 차
+
+[구분 파일] flourish_bar_mean_distance.csv / flourish_summary_table.csv 는 동일 수치의 부분집합.
+※ 예시 수치와 다를 수 있음 → 항상 flourish_report_one_sheet.csv 기준.

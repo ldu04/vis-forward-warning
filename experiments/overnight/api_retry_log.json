@@ -1,0 +1,44 @@
+{
+  "api": "data.go.kr B552061/frequentzoneLg (지자체별 사고다발지역)",
+  "conclusion": "5회 모두 401 Unauthorized. 재시도 중단.",
+  "key_check": "제공된 인증키는 기존 ~/.config/datagokr.key 와 문자열 완전 일치(66자, URL 인코딩 형태 %2B 포함). 따라서 키 파일 오류/잘림이 아니라 계정의 해당 API 활용신청 승인 상태 문제로 판단.",
+  "next_action": "data.go.kr 마이페이지 > 활용신청 현황에서 해당 API 승인 여부 확인 필요 (사용자 확인 예정)",
+  "attempts": [
+    {
+      "attempt": 1,
+      "at": "2026-07-21 00:38:39",
+      "error": "HTTPError: HTTP Error 401: Unauthorized",
+      "body_head": "Unauthorized",
+      "source": "overnight run.log (프로세스 사망으로 미기록분 복원)"
+    },
+    {
+      "attempt": 2,
+      "at": "2026-07-21 01:38:39",
+      "error": "HTTPError: HTTP Error 401: Unauthorized",
+      "body_head": "Unauthorized",
+      "source": "overnight run.log (프로세스 사망으로 미기록분 복원)"
+    },
+    {
+      "attempt": 3,
+      "at": "2026-07-21 02:38:39",
+      "error": "HTTPError: HTTP Error 401: Unauthorized",
+      "body_head": "Unauthorized",
+      "source": "overnight run.log (프로세스 사망으로 미기록분 복원)"
+    },
+    {
+      "attempt": 4,
+      "at": "2026-07-21 03:38:40",
+      "error": "HTTPError: HTTP Error 401: Unauthorized",
+      "body_head": "Unauthorized",
+      "source": "overnight run.log (프로세스 사망으로 미기록분 복원)"
+    },
+    {
+      "attempt": 5,
+      "at": "2026-07-21 08:09:40",
+      "http_status": 401,
+      "error": "HTTPError: HTTP Error 401: Unauthorized",
+      "body_head": "Unauthorized\n",
+      "source": "복구 세션 수동 확인 (키 재확인 후 1회)"
+    }
+  ]
+}

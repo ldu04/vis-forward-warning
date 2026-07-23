@@ -1,0 +1,37 @@
+﻿__pycache__/
+*.pyc
+logs/
+.pytest_cache/
+.vscode/
+.claude/settings.local.json
+
+# 제3자 스톡 영상은 커밋하지 않는다.
+# 수상 시 저작재산권이 주최 협회로 양도되는 공모전 특성상 권리관계가 불명확해지므로,
+# 측정용 입력 영상은 로컬에만 두고 출처는 experiments/*/latency_summary.md 에 기록한다.
+assets/*.mp4
+assets/*.avi
+assets/*.mov
+assets/*.mkv
+
+# ---------------------------------------------------------------------------
+# 블랙박스 스캔 프레임 PNG
+# ---------------------------------------------------------------------------
+# 스캔이 뽑아내는 프레임 PNG는 원본 주행영상(개인 주행기록)에서 잘라낸 것이고
+# 한 장에 2~3MB, 수백 장 단위로 쌓인다. 저장소에 그대로 들어가면 관리가 불가능해지므로
+# 기본적으로 전량 제외한다.
+#
+# 제안서에 실을 선별본만 candidates/selected/ 아래에 긴 변 1280px로 축소해서 커밋한다.
+# (원본 해상도 PNG는 로컬에만 보관 — 위치는 selected/README.md 참조)
+# 아래 규칙은 "candidates 하위는 기본 제외, selected 만 예외" 구조라
+# 앞으로 새 스캔이 어디에 candidates/ 를 만들든 자동으로 걸러진다.
+**/candidates/**
+!**/candidates/selected/
+!**/candidates/selected/**
+
+# 선별 전 원본 해상도 PNG 더미 (선별본은 candidates/selected/ 로 옮겨서 커밋)
+experiments/blackbox_scan/brake/png/
+experiments/blackbox_scan/decel/*.png
+experiments/blackbox_scan/_smoke/
+
+# 루트 yolov8n.pt 와 중복되는 사본
+experiments/blackbox_scan/yolov8n.pt

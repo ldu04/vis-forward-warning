@@ -1,0 +1,9 @@
+[20:14:18.055] [receiver] UDP 수신 대기 port=5005
+[20:14:28.582] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:28.665] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:28.746] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:28.816] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:28.900] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:28.972] [receiver] UDP 수신 risk=lane_change ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:29.053] [receiver] UDP 수신 risk=bench_synthetic ttc=3.0 from=('192.168.0.15', 50550)
+[20:14:29.067] [receiver] 목표 7 이벤트 표시 완료 — 종료

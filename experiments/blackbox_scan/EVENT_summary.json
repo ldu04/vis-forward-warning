@@ -1,0 +1,14 @@
+{
+  "src": "C:\\Users\\이동욱\\blackbox_full\\EVENT",
+  "files_scanned": 77,
+  "files_skipped": 0,
+  "sample_fps": 2.0,
+  "frames_inferred": 3157,
+  "elapsed_s": 2306.6,
+  "candidates": 143,
+  "by_type": {
+    "d_person": 130,
+    "c_brake": 8,
+    "c_brake_near": 5
+  }
+}

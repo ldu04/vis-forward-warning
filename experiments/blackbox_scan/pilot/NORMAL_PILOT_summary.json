@@ -1,0 +1,32 @@
+{
+  "src": "C:\\Users\\이동욱\\blackbox_full\\NORMAL",
+  "files_scanned": 25,
+  "files_skipped": 15,
+  "frames_inferred": 2991,
+  "elapsed_s": 635.7,
+  "sec_per_file": 24.98,
+  "candidates": 114,
+  "by_type": {
+    "c_brake": 4,
+    "c_brake_near": 17,
+    "d_person": 93
+  },
+  "diagnostics": {
+    "max_big_area_raw": 0.2171,
+    "n_frames_raw_over_012": 10,
+    "n_frames_raw_over_008": 25,
+    "raw_pos_at_max": [
+      0.849,
+      0.366
+    ]
+  },
+  "filter": {
+    "occl_area": 0.12,
+    "cx": [
+      0.1,
+      0.9
+    ],
+    "cy_min": 0.4,
+    "min_sec": 2.0
+  }
+}

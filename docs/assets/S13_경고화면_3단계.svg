@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="400" viewBox="0 0 680 400" font-family="Pretendard, 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+<rect width="680" height="400" fill="#FFFFFF"/>
+
+<rect x="42" y="50" width="185" height="250" rx="12" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="247" y="50" width="185" height="250" rx="12" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="452" y="50" width="185" height="250" rx="12" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+
+<polygon points="112,150 156,150 192,285 76,285" fill="#B4B2A9" opacity="0.22"/>
+<polygon points="318,150 362,150 398,285 282,285" fill="#B4B2A9" opacity="0.22"/>
+<polygon points="523,150 567,150 603,285 487,285" fill="#B4B2A9" opacity="0.22"/>
+
+<line x1="134" y1="285" x2="134" y2="155" stroke="#888780" stroke-width="1.5" stroke-dasharray="8 8"/>
+<line x1="340" y1="285" x2="340" y2="155" stroke="#888780" stroke-width="1.5" stroke-dasharray="8 8"/>
+<line x1="545" y1="285" x2="545" y2="155" stroke="#888780" stroke-width="1.5" stroke-dasharray="8 8"/>
+
+<text x="134" y="85" text-anchor="middle" font-size="12" fill="#888780">표시 없음</text>
+
+<rect x="257" y="60" width="165" height="46" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+<text x="339" y="79" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#633806">전방 차량 급정거</text>
+<text x="339" y="96" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#BA7517">충돌예상 3.2초</text>
+
+<rect x="462" y="60" width="165" height="46" rx="6" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="544" y="79" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#791F1F">보행자 감지</text>
+<text x="544" y="96" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#A32D2D">충돌예상 1.4초</text>
+
+<rect x="320" y="195" width="40" height="26" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<circle cx="328" cy="217" r="3" fill="#E24B4A"/>
+<circle cx="352" cy="217" r="3" fill="#E24B4A"/>
+
+<circle cx="545" cy="200" r="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<path d="M545 207V226M545 212L537 219M545 212L553 219M545 226L538 238M545 226L552 238" fill="none" stroke="#993C1D" stroke-width="2" stroke-linecap="round"/>
+
+<text x="134" y="326" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">안전</text>
+<text x="134" y="346" text-anchor="middle" font-size="12" fill="#5F5E5A">4.0초 초과</text>
+<text x="339" y="326" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">주의</text>
+<text x="339" y="346" text-anchor="middle" font-size="12" fill="#5F5E5A">2.0~4.0초</text>
+<text x="544" y="326" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">위험</text>
+<text x="544" y="346" text-anchor="middle" font-size="12" fill="#5F5E5A">2.0초 이하</text>
+
+<text x="340" y="380" text-anchor="middle" font-size="14" fill="#2C2C2A">안전 등급은 전송하지 않는다 — 필요한 경고만 남긴다</text>
+</svg>

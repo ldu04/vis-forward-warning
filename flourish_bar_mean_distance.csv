@@ -1,0 +1,3 @@
+﻿scenario,mean_distance_m,std_distance_m,n_trials
+기기 미사용 (Standard),56.417523,4.997767,100
+기기 사용 (VIS),40.284022,5.423131,100

@@ -1,0 +1,15 @@
+event_id,stage,wall_time_s,mono_time_s,role,extra
+f419450d4828,udp_receive,1784546068.575033,2329078.256597,receiver,bench_synthetic
+f419450d4828,ui_alert_shown,1784546068.601832,2329078.283397,receiver,
+b0bd80c5d3f2,udp_receive,1784546068.657847,2329078.339411,receiver,bench_synthetic
+b0bd80c5d3f2,ui_alert_shown,1784546068.682766,2329078.364330,receiver,
+a36449821da4,udp_receive,1784546068.739692,2329078.421257,receiver,bench_synthetic
+a36449821da4,ui_alert_shown,1784546068.751968,2329078.433533,receiver,
+d2ca02364583,udp_receive,1784546068.811865,2329078.493429,receiver,bench_synthetic
+d2ca02364583,ui_alert_shown,1784546068.833472,2329078.515036,receiver,
+7ea61485ac38,udp_receive,1784546068.895568,2329078.577132,receiver,bench_synthetic
+7ea61485ac38,ui_alert_shown,1784546068.919238,2329078.600803,receiver,
+f8f603af3fbf,udp_receive,1784546068.968669,2329078.650233,receiver,lane_change
+f8f603af3fbf,ui_alert_shown,1784546068.988531,2329078.670096,receiver,
+acbb54fc5979,udp_receive,1784546069.049914,2329078.731477,receiver,bench_synthetic
+acbb54fc5979,ui_alert_shown,1784546069.066837,2329078.748401,receiver,

@@ -1,0 +1,34 @@
+[
+  {
+    "task": "4_ffmpeg_validate",
+    "status": "MISMATCH",
+    "elapsed_s": 68.4,
+    "detail": "ffmpeg 0건 {} / cv2 7건 {'d_person': 6, 'c_brake': 1}. ffmpeg 0s/file vs cv2 19.08s/file",
+    "decision": "검출 결과 불일치 → 기존 decode=cv2 로 회귀",
+    "finished_at": "2026-07-20 23:33:03"
+  },
+  {
+    "task": "5_today_scan",
+    "status": "OK",
+    "elapsed_s": 1706.7,
+    "detail": "125파일, 후보 621건, a_occlusion 13건",
+    "decision": "정지 포함 위해 occl_area 0.10 / min_sec 1.5 / cy_min 0.30 으로 완화",
+    "finished_at": "2026-07-21 00:01:29"
+  },
+  {
+    "task": "6_normal_full",
+    "status": "OK",
+    "elapsed_s": 2229.8,
+    "detail": "후보 846건 {'d_person': 618, 'c_brake': 75, 'c_brake_near': 129, 'a_occlusion': 13, 'b_reveal': 11}",
+    "decision": "동일 필터(정지 포함) 적용, 파일 단위 체크포인트로 재실행 시 이어받음",
+    "finished_at": "2026-07-21 00:38:39"
+  },
+  {
+    "task": "7_rank",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "detail": "a_occlusion 총 26건, 상위 20건 → C:\\Users\\이동욱\\Desktop\\자소서\\엔지니어링 산업 공모전\\carla-project\\experiments\\blackbox_scan\\candidates\\ranked\\ranked_occlusion_top20.csv",
+    "decision": "면적비 내림차순, 동률 시 지속시간. 채택 여부는 판단하지 않음",
+    "finished_at": "2026-07-21 00:38:39"
+  }
+]

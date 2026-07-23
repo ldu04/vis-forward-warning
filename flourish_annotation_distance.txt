@@ -1,0 +1,13 @@
+막대그래프 어노테이션용 문구(복사해서 Flourish 텍스트 박스에 붙여넣기)
+
+평균 제동거리: −16.1 m (28.6% 단축)
+BC 사고율 감소: −81.0 pp (무기기 82.0% → 기기 1.0%)
+
+표에서 Gain 행 숫자 의미:
+  avg_distance_m = 무기기 평균 − 기기 평균 (m)
+  max_distance_m = 무기기 최대 − 기기 최대 (m)
+  bc_collision_pct = 무기기 BC% − 기기 BC% (퍼섭 포인트)
+
+통합 파일 flourish_report_one_sheet.csv:
+  상단 2행 = 조건별 전체 지표, 3행 Gain = 차이(거리·반응·BC건수·BC%p).
+  row_kind: 막대그래프는 bar_and_table 행만 사용(gain_summary_only 제외).

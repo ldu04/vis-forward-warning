@@ -1,0 +1,4 @@
+﻿scenario,row_kind,mean_total_distance_m,std_total_distance_m,max_total_distance_m,mean_reaction_time_s,std_reaction_time_s,bc_collision_count,bc_collision_pct,ab_collision_count,n_trials
+기기 미사용 (Standard),bar_and_table,56.417523,4.997767,66.278294,2.598241,0.656264,82,82.00,1,100
+기기 사용 (VIS),bar_and_table,40.284022,5.423131,53.579916,0.868357,0.187431,1,1.00,1,100
+개선 효과 (Gain),gain_summary_only,16.133501,,12.698378,1.729884,,81,81.00,,

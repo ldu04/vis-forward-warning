@@ -1,0 +1,4 @@
+﻿scenario,avg_distance_m,max_distance_m,bc_collision_pct
+기기 미사용 (Standard),56.418,66.278,82.00
+기기 사용 (VIS),40.284,53.580,1.00
+개선 효과 (Gain),16.134,12.698,81.00

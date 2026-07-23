@@ -1,0 +1,23 @@
+Flourish에서 공모전 3종 그래프 만들 때 (데이터는 plot_simulation.py 실행 후 같은 폴더)
+
+[1] Distribution — 반응 시간 분포 (겹침 막대 / 라인)
+  파일: flourish_dist_reaction_histogram.csv
+  템플릿: Line, bar, pie → Grouped column chart (또는 Line chart 다중 시리즈)
+  X축: bin_mid_s (또는 bin_lower_s~bin_upper_s를 라벨로)
+  Y축: count_no_device, count_with_device 두 시리즈로 매핑
+  목적: 무기기는 넓게 퍼지고 기기는 낮은 구간에 몰리는지 비교
+
+[2] Slope / 회차별 낙폭 — 동일 회차 좌·우 비교
+  파일: flourish_slope_stop_distance.csv (또는 flourish_slope_reaction_time.csv)
+  템플릿: Slope chart (없으면 Line chart에서 Points만, X를 두 범주로 두지 말 것)
+  첫 열 trial = 각 선의 이름(100개라 선 투명도·두께 조절 필수)
+  열2 = 기기 없음 측 값, 열3 = 기기 있음 측 값
+  팁: 선이 너무 많으면 Scatter로 trial vs distance, 색=조건으로 대체
+
+[3] Sankey — BC 안전 vs 추돌 흐름
+  파일: flourish_sankey_bc_flows.csv
+  템플릿: Sankey diagram
+  열: source, target, value 그대로 매핑
+  목적: 100회 중 안전/사고로 나뉘는 양을 한눈에
+
+참고: 막대만으로 BC율 비교는 flourish_bc_summary.csv + Column chart.

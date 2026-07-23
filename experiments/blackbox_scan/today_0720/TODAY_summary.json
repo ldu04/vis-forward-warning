@@ -1,0 +1,18 @@
+{
+  "label": "TODAY",
+  "decode": "cv2",
+  "scanned": 125,
+  "skipped": 0,
+  "elapsed_s": 1700.3,
+  "sec_per_file": 13.39,
+  "filter": {
+    "occl_area": 0.1,
+    "cx": [
+      0.05,
+      0.95
+    ],
+    "cy_min": 0.3,
+    "min_sec": 1.5,
+    "sample_fps": 2.0
+  }
+}
