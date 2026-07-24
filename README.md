@@ -84,7 +84,7 @@ YOLOv8로 전방 위험을 감지해, UDP로 후방 차량에 경고를 전달**
 | `geometry.py` | TTC 계산, depth buffer 미터 변환, 픽셀 역투영 |
 | `lead_vehicle.py` | 전방 차량 TTC·거리 메트릭 추출 |
 | `config.py` | 전체 파라미터 중앙 관리 |
-| `plot_simulation.py` | 4-3 몬테카를로 시뮬레이션 → `flourish_*.csv`, PNG |
+| `simulation/plot_simulation.py` | 4-3 몬테카를로 시뮬레이션 → `simulation/flourish_*.csv`, PNG |
 | `vis_logger.py` | 단계별 타임스탬프 CSV 로깅 (event_id 조인) |
 
 ---
@@ -164,8 +164,8 @@ python sender.py --input <영상경로>
 | **4-1** | 검출 파이프라인 시연 | `yolo_risk.py`, `experiments/blackbox_scan/` |
 | **4-2** | 종단간 지연 실측 | `experiments/latency_20260720/` |
 | **4-2** | 다수 단말 동시접속 지연 | `experiments/multidevice_latency/` |
-| **4-3** | 기기 유무별 영향도 분석 | `plot_simulation.py`, `flourish_*.csv` |
-| **4-4** | 정량 탐지 정확도 (예정 — 정답데이터 기반) | 브레이크등 임계 시연: `experiments/blackbox_scan/` <br> 정량 정확도 계획: `experiments/latency_20260720/TODO_accuracy_eval.md` |
+| **4-3** | 기기 유무별 영향도 분석 | `simulation/plot_simulation.py`, `simulation/flourish_*.csv` |
+| **4-4** | 정량 탐지 정확도 (예정 — 정답데이터 기반) | 브레이크등 임계 시연: `experiments/blackbox_scan/` <br> 정량 정확도 계획: `experiments/latency_20260720/accuracy_eval_plan.md` |
 | **5-1** | 실증 후보지 선정 | `experiments/cheongju_heatmap/README.md` 3장 |
 
 ### 주요 실측 결과
@@ -179,9 +179,11 @@ python sender.py --input <영상경로>
 | 브레이크등 임계 검증 | 점등 17–42% vs 미점등 4–5% (임계 8%) | 4-4 |
 | 청주권 화물차 사고 다발지점 | 4년 누적 10개 지점 | 3-5 |
 
-> 종단간 지연은 **단일 숫자로 인용하지 마십시오.** 기준에 따라 100.81 / 106.87 /
-> 168.82 ms로 달라지며, 카메라 캡처 지연은 아직 포함되어 있지 않습니다.
-> 자세한 내용은 `experiments/latency_20260720/latency_summary.md` 5–6장을 참조하십시오.
+> 종단간 지연은 **단일 숫자로 인용하지 마십시오.** 네트워크 구간을 RTT/2(편도 추정)로
+> 합성하면 중앙값 100.81 / 평균 106.87 ms, **무선 RTT 전체를 편도에 그대로 대입한
+> 완전보수 기준**으로는 중앙값 107.4 / 평균 119.1 / p95 168.8 ms입니다(제안서 덱은
+> 이 완전보수 기준을 인용). 카메라 캡처 지연은 아직 미포함입니다. 두 기준의 계산은
+> `experiments/latency_20260720/latency_summary.md` 참조.
 
 ---
 
@@ -189,16 +191,16 @@ python sender.py --input <영상경로>
 
 도입 전·후를 비교한 **1차원 물리 기반 몬테카를로 시뮬레이션 100회 반복** 결과입니다.
 초기 속도(80–100 km/h), 제동 강도(0.7–1.0) 등 외생 변수는 두 조건에서 동일하게
-통제했습니다. 산출 스크립트는 `plot_simulation.py` (seed=42 고정)입니다.
+통제했습니다. 산출 스크립트는 `simulation/plot_simulation.py` (seed=42 고정)입니다.
 
 > **이것은 정확도 "검증"이 아니라 "영향도 분석"입니다.** 실차 실험의 계측 결과가 아니라,
 > 가정한 반응시간·제동 파라미터를 넣고 돌린 해석 모델의 출력입니다.
 
 **운전자 반응시간은 시뮬레이션 결과가 아니라 입력 가정값입니다.** 조기경고 미적용
-1.2–4.1초 → 적용 0.5–1.2초(경보 수신으로 인지·제동 개시가 단축된다는 가정). 이 값은
-**본 모형의 가정값이며 문헌 인용치가 아닙니다.** 일부는 목표 사고율이 나오도록 조정된
-값입니다(`plot_simulation.py` 상단 주석에 명시). 따라서 사고 발생률 수치도 절대값이
-아니라 "가정 하의 상대적 경향"으로만 해석해야 합니다.
+1.2–4.1초 → 적용 0.5–1.2초(경보 수신으로 인지·제동 개시가 단축된다는 가정). 이 분포는
+문헌 인용치가 아닌 **본 모형의 가정값**이며, 일부 파라미터는 관측된 사고율 경향에 맞춰
+설정되었습니다(`simulation/plot_simulation.py` 상단 주석 참조). 따라서 이 시뮬레이션은
+**절대 수치 예측이 아니라 도입 전·후의 상대적 경향**을 보이는 자료로 해석해야 합니다.
 
 ### 주요 결과 지표 (100회 평균)
 
@@ -225,8 +227,8 @@ python sender.py --input <영상경로>
 ├─ lead_vehicle.py            전방 차량 TTC·거리 메트릭
 ├─ vis_logger.py              단계별 타임스탬프 CSV 로깅 (event_id 조인)
 ├─ config.py                  공통 설정 (UDP·카메라·임계값)
-├─ plot_simulation.py         4-3 몬테카를로 시뮬레이션 → flourish_*.csv, PNG
-├─ tests/            단위 테스트
+├─ tests/                     단위 테스트
+├─ simulation/                4-3 몬테카를로 시뮬레이션 (plot_simulation.py → flourish_*.csv, 차트 PNG)
 └─ experiments/               ★ 제안서 근거 자료
    ├─ latency_20260720/       4-2 종단간 지연 실측 (raw CSV, 분석, 그래프, 보고서)
    ├─ multidevice_latency/    4-2 다수 단말 동시접속 지연 실측 (측정 도구 + 결과)
@@ -286,13 +288,12 @@ python experiments/multidevice_latency/analyze_multidevice.py --glob "raw/run_N*
 ### 4-3 영향도 분석 재현
 
 ```bash
-python plot_simulation.py
+python simulation/plot_simulation.py
 ```
 
-seed=42 고정이므로 출력 CSV 17개가 바이트 단위로 재현됩니다.
-반응시간 파라미터는 **선행연구 인용치가 아니라 가정값**이며, 일부는 목표 사고율이
-나오도록 조정된 값입니다. 스크립트 상단 주석에 명시되어 있으니 인용 전 반드시
-확인하십시오.
+seed=42 고정이므로 출력 CSV 17개가 바이트 단위로 재현됩니다(`simulation/` 폴더에 생성).
+반응시간 분포는 **문헌 인용치가 아닌 본 모형의 가정값**이며, 일부 파라미터는 관측된
+사고율 경향에 맞춰 설정되었습니다. 근거는 `simulation/plot_simulation.py` 상단 주석 참조.
 
 ### 3-5 공공데이터 수집 재현
 
@@ -327,9 +328,9 @@ python make_heatmap.py
   (조회일 2026-07-20).
 - **블랙박스 주행 영상은 저장소에 포함하지 않습니다.** 개인 주행 이력·위치 정보에
   해당하기 때문이며, 스캔 결과 수치와 **개인식별정보를 제거(번호판·얼굴·상호·지명·
-  OSD 블러/크롭)한 대표 프레임 5장만** 공개 수록합니다(전체 선별본 35장은 비공개
-  저장소 보관). 전체 스캔 규모·개인정보 처리 방식·전수 검증(OCR 0건)은
-  `experiments/blackbox_scan/METHODOLOGY.md` 참조.
+  OSD 블러/크롭)한 대표 프레임 5장만** 공개 수록합니다. 원본 주행영상은 개인정보
+  보호를 위해 미포함입니다. 전체 스캔 규모·처리 방식·전수 검증(OCR 0건)은
+  `experiments/blackbox_scan/METHODOLOGY.md` 를 참조하십시오.
 
 ## 한계 및 향후 발전 방향
 
@@ -340,7 +341,7 @@ python make_heatmap.py
 - **전방 단일 카메라**: 측방·후방 위험 상황 미감지
 - **실차 검증 미완료**: 실도로 주행 중 실시간 동작 검증은 수행하지 않았습니다.
 - **정확도 지표(mAP 등)는 아직 산출되지 않았습니다.** 정답 라벨이 없기 때문이며,
-  정량 정확도 평가 계획은 `experiments/latency_20260720/TODO_accuracy_eval.md` 에 있습니다.
+  정량 정확도 평가 계획은 `experiments/latency_20260720/accuracy_eval_plan.md` 에 있습니다.
 
 ### 향후 발전 방향
 

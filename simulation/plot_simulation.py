@@ -1,5 +1,5 @@
 """
-100회 몬테카를로: 운전자 반응·제동 개인차 vs 기기 유무 → 포스터용 3패널 그래프.
+100회 몬테카를로: 운전자 반응·제동 개인차 vs 기기 유무 → 포스터용 2패널 그래프(제동거리·사고율).
 
 ===========================================================================
 이 스크립트가 계산하는 것 (제안서 4-3 정량 결과의 산출 근거)
@@ -764,44 +764,17 @@ def main() -> None:
     print(f"Saved {guide_p}")
 
     # --- 그림 ---
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6), facecolor="white")
+    # 결과 지표는 2패널만: ① 제동(이동)거리, ② BC 사고율.
+    # 반응시간은 입력 가정값(샘플한 t_C)이므로 결과 패널로 그리지 않는다.
+    # (반응시간 분포는 flourish_*.csv 에는 그대로 기록되며, 별도 '입력 가정'으로만 인용.)
+    fig, axes = plt.subplots(1, 2, figsize=(13, 6), facecolor="white")
     fig.patch.set_facecolor("white")
 
-    # 1–2: 회차(1…n) 가로축, 회차별 값은 점, 조건별 평균은 수평선
     trials = np.arange(1, n + 1, dtype=np.float64)
     jitter = 0.22
-    m_nd, m_d = float(np.mean(t_c_nd)), float(np.mean(t_c_d))
     m1_nd, m1_d = float(np.mean(dist_total_nd)), float(np.mean(dist_total_d))
 
-    ax0 = axes[0]
-    ax0.scatter(
-        trials - jitter,
-        t_c_nd,
-        s=10,
-        c="red",
-        alpha=0.45,
-        linewidths=0,
-        label="기기 없음",
-    )
-    ax0.scatter(
-        trials + jitter,
-        t_c_d,
-        s=10,
-        c="blue",
-        alpha=0.45,
-        linewidths=0,
-        label="기기 있음",
-    )
-    ax0.axhline(m_nd, color="darkred", linestyle="-", linewidth=1.6, label=f"평균(무기기) {m_nd:.2f}s")
-    ax0.axhline(m_d, color="darkblue", linestyle="-", linewidth=1.6, label=f"평균(기기) {m_d:.2f}s")
-    ax0.set_xlim(0.5, float(n) + 0.5)
-    ax0.set_xticks(np.linspace(1, n, 11, dtype=int))
-    ax0.set_xlabel("시뮬 회차")
-    ax0.set_ylabel("반응 시간 (s)")
-    ax0.set_title("C 차량 반응 시간 (회차별)")
-    ax0.legend(loc="upper right", fontsize=8)
-
-    ax1 = axes[1]
+    ax1 = axes[0]
     ax1.scatter(
         trials - jitter,
         dist_total_nd,
@@ -829,8 +802,8 @@ def main() -> None:
     ax1.set_title("A 급정거 ~ C 정지·충돌 시점까지 이동 거리 (회차별)")
     ax1.legend(loc="upper right", fontsize=8)
 
-    # 3: BC 충돌률 (공모전 지표)
-    ax2 = axes[2]
+    # ②: BC 충돌률 (공모전 지표)
+    ax2 = axes[1]
     bars = ax2.bar(
         ["기기 없음", "기기 있음"],
         [pct_nd, pct_d],
