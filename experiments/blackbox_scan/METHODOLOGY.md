@@ -23,7 +23,7 @@
 
 > ★ **런타임 vs 오프라인 구분**: 위 브레이크등 **다중 단서**(밝은적색 lamp%·좌우 대칭쌍·
 > 시간적 급증 dLamp)는 **선별 프레임에 대한 오프라인 분석**이다(`rebuild_brake_detect.py`).
-> 실시간 파이프라인(`yolo_risk.py`)의 브레이크등 힌트는 **단순 붉은픽셀 비율 임계**만
+> 실시간 파이프라인(`src/yolo_risk.py`)의 브레이크등 힌트는 **단순 붉은픽셀 비율 임계**만
 > 사용하며, 다중 단서는 그 단순 방식의 오검출(붉은 차체)을 걸러내는 **별도 분석 방법**으로
 > 제시한 것이지 런타임에 통합된 검출기가 아니다.
 
@@ -47,9 +47,9 @@
 |---|---|---|
 | `S6_A_t17_blurred_final.png` | 시야차단 실사 (정지·최대 가림) | 2-2 |
 | `S6_C_t25_blurred_final.png` | 시야차단 실사 (주행·근접) | 2-2 |
-| `s17_detection/s17_lead_vehicle_detection.png` | YOLO 객체탐지(선행차 bbox, 차량검출 라벨) | 4-1 |
-| `d_brake_detected/a01_brake_detected_dLamp44.9x_symY.png` | 브레이크등 **검출 성공** (다중단서) | 4-4 |
-| `d_brake_limitation/d02_redbus_bright-fooled_corrected.png` | 브레이크등 **오검출 정정** (붉은 차체 → 시간·대칭으로 배제) | 4-4 |
+| `s17_lead_vehicle_detection.png` | YOLO 객체탐지(선행차 bbox, 차량검출 라벨) | 4-1 |
+| `a01_brake_detected_dLamp44.9x_symY.png` | 브레이크등 **검출 성공** (다중단서) | 4-4 |
+| `d02_redbus_bright-fooled_corrected.png` | 브레이크등 **오검출 정정** (붉은 차체 → 시간·대칭으로 배제) | 4-4 |
 
 > 검출 성공만 싣지 않고 **오검출을 정정한 사례를 함께** 수록한다 — 성공 사례만 모으면
 > 평가가 아니라 홍보가 되기 때문이다. 단순 붉은픽셀 방식이 붉은 차체를 오검출하는 것을,

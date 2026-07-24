@@ -135,10 +135,10 @@ GPU 모드 비교 측정은 수행할 수 없었다.
 
 ```powershell
 # 수신측 (별도 프로세스)
-python receiver.py --csv experiments\latency_20260720\raw\trackA_receiver.csv --exit-after 230
+python src/receiver.py --csv experiments\latency_20260720\raw\trackA_receiver.csv --exit-after 230
 
 # 송신측
-python sender.py --input assets\mixkit_highway_pov_42364.mp4 `
+python src/sender.py --input assets\mixkit_highway_pov_42364.mp4 `
                  --target 192.168.0.15 --max-events 200 --warmup 30 `
                  --force-emit --csv experiments\latency_20260720\raw\trackA_sender.csv
 
@@ -248,7 +248,7 @@ ifconfig 2>/dev/null | grep "inet " || ip addr show wlan0
 
 **PC (송신측):**
 ```powershell
-python sender.py --input assets\mixkit_highway_pov_42364.mp4 `
+python src/sender.py --input assets\mixkit_highway_pov_42364.mp4 `
                  --target <폰의_WiFi_IP> --max-events 200 --warmup 30 `
                  --force-emit --ack `
                  --csv experiments\latency_20260720\raw\trackB_sender.csv

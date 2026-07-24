@@ -56,6 +56,13 @@ class YoloRiskPipeline:
     def __init__(self, model_name: str = "yolov8n.pt") -> None:
         from ultralytics import YOLO
 
+        # 기본 가중치는 이 모듈과 같은 폴더(src/)에서 찾는다.
+        # 어느 작업 디렉터리에서 실행하든 동일 가중치를 로드하도록(재현성) 절대경로로 해석하고,
+        # 파일이 없으면 원래 이름을 그대로 넘겨 ultralytics 기본 동작(자동 다운로드)을 따른다.
+        if model_name == "yolov8n.pt":
+            local = os.path.join(os.path.dirname(os.path.abspath(__file__)), "yolov8n.pt")
+            if os.path.exists(local):
+                model_name = local
         self.model = YOLO(model_name)
         self._prev_vehicle_centers: List[Tuple[float, float]] = []
 

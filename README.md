@@ -75,17 +75,18 @@ YOLOv8로 전방 위험을 감지해, UDP로 후방 차량에 경고를 전달**
 
 | 파일 | 역할 |
 |------|------|
-| `sender.py` | 영상 파일/카메라 입력 → YOLO 추론 → UDP 송신 (`--input` 지연측정 모드, `--ack` 트랙 B RTT, `VIS_MOCK=1` 목 모드) |
-| `receiver.py` | UDP 브로드캐스트 수신, 위험 등급별 경고 출력 (pygame UI) |
-| `receiver_ack_termux.py` | 트랙 B 전용 경량 수신기 (안드로이드 Termux, 표준 라이브러리만) |
-| `yolo_risk.py` | YOLOv8 추론 파이프라인, DetectionRisk 객체 생성 (브레이크등 붉은픽셀 로직 포함) |
-| `brake_detector.py` | bbox 면적 변화율·TTC 기반 급정거 감지 |
-| `driver_response.py` | 운전자 반응시간 모델 |
-| `geometry.py` | TTC 계산, depth buffer 미터 변환, 픽셀 역투영 |
-| `lead_vehicle.py` | 전방 차량 TTC·거리 메트릭 추출 |
-| `config.py` | 전체 파라미터 중앙 관리 |
+| `src/sender.py` | 영상 파일/카메라 입력 → YOLO 추론 → UDP 송신 (`--input` 지연측정 모드, `--ack` 트랙 B RTT, `VIS_MOCK=1` 목 모드) |
+| `src/receiver.py` | UDP 브로드캐스트 수신, 위험 등급별 경고 출력 (pygame UI) |
+| `src/receiver_ack_termux.py` | 트랙 B 전용 경량 수신기 (안드로이드 Termux, 표준 라이브러리만) |
+| `src/yolo_risk.py` | YOLOv8 추론 파이프라인, DetectionRisk 객체 생성 (브레이크등 붉은픽셀 로직 포함) |
+| `src/brake_detector.py` | bbox 면적 변화율·TTC 기반 급정거 감지 |
+| `src/driver_response.py` | 운전자 반응시간 모델 |
+| `src/geometry.py` | TTC 계산, depth buffer 미터 변환, 픽셀 역투영 |
+| `src/lead_vehicle.py` | 전방 차량 TTC·거리 메트릭 추출 |
+| `src/config.py` | 전체 파라미터 중앙 관리 |
+| `src/vis_logger.py` | 단계별 타임스탬프 CSV 로깅 (event_id 조인) |
+| `src/yolov8n.pt` | YOLOv8n 사전학습 가중치 (파이프라인 기본 모델) |
 | `simulation/plot_simulation.py` | 4-3 몬테카를로 시뮬레이션 → `simulation/flourish_*.csv`, PNG |
-| `vis_logger.py` | 단계별 타임스탬프 CSV 로깅 (event_id 조인) |
 
 ---
 
@@ -132,17 +133,17 @@ pip install -r requirements.txt
 ```bash
 export VIS_MOCK=1    # Linux/Mac
 set VIS_MOCK=1       # Windows
-python sender.py
+python src/sender.py
 ```
 
 ### 입력 영상 모드 — 실제 영상으로 검출·송신
 
 ```bash
 # 수신측 (후방 차량) — 별도 터미널
-python receiver.py
+python src/receiver.py
 
 # 송신측 (대형차) — 영상 입력 → YOLO → UDP
-python sender.py --input <영상경로>
+python src/sender.py --input <영상경로>
 ```
 
 ### 주요 환경변수
@@ -161,7 +162,7 @@ python sender.py --input <영상경로>
 |---|---|---|
 | **2-2** | 대형차량에 의한 정보 단절 | `experiments/blackbox_scan/` (실사 탐색 결과) |
 | **3-5** | 지역 위험 히트맵 (기존 공공데이터 대비) | `experiments/cheongju_heatmap/` |
-| **4-1** | 검출 파이프라인 시연 | `yolo_risk.py`, `experiments/blackbox_scan/` |
+| **4-1** | 검출 파이프라인 시연 | `src/yolo_risk.py`, `experiments/blackbox_scan/` |
 | **4-2** | 종단간 지연 실측 | `experiments/latency_20260720/` |
 | **4-2** | 다수 단말 동시접속 지연 | `experiments/multidevice_latency/` |
 | **4-3** | 기기 유무별 영향도 분석 | `simulation/plot_simulation.py`, `simulation/flourish_*.csv` |
@@ -216,18 +217,20 @@ python sender.py --input <영상경로>
 ## 디렉토리 구조
 
 ```
-├─ sender.py                  송신측: 영상/카메라 입력 → YOLO → UDP 송신
-│                             (--input 지연측정 모드, --ack 트랙 B RTT, VIS_MOCK 목 모드)
-├─ receiver.py                수신측: UDP 수신 → pygame 경고 UI
-├─ receiver_ack_termux.py     트랙 B 전용 경량 수신기 (안드로이드 Termux, 표준 라이브러리만)
-├─ yolo_risk.py               YOLOv8 검출 + 위험 분류 (브레이크등 붉은픽셀 로직 포함)
-├─ brake_detector.py          급정거 감지 (TTC 변화율 / bbox 면적 증가율)
-├─ driver_response.py         운전자 반응시간 모델
-├─ geometry.py                TTC·좌표 변환·깊이 처리
-├─ lead_vehicle.py            전방 차량 TTC·거리 메트릭
-├─ vis_logger.py              단계별 타임스탬프 CSV 로깅 (event_id 조인)
-├─ config.py                  공통 설정 (UDP·카메라·임계값)
-├─ tests/                     단위 테스트
+├─ src/                       런타임 코드 (import 경로 루트)
+│  ├─ sender.py               송신측: 영상/카메라 입력 → YOLO → UDP 송신
+│  │                          (--input 지연측정 모드, --ack 트랙 B RTT, VIS_MOCK 목 모드)
+│  ├─ receiver.py             수신측: UDP 수신 → pygame 경고 UI
+│  ├─ receiver_ack_termux.py  트랙 B 전용 경량 수신기 (안드로이드 Termux, 표준 라이브러리만)
+│  ├─ yolo_risk.py            YOLOv8 검출 + 위험 분류 (브레이크등 붉은픽셀 로직 포함)
+│  ├─ brake_detector.py       급정거 감지 (TTC 변화율 / bbox 면적 증가율)
+│  ├─ driver_response.py      운전자 반응시간 모델
+│  ├─ geometry.py             TTC·좌표 변환·깊이 처리
+│  ├─ lead_vehicle.py         전방 차량 TTC·거리 메트릭
+│  ├─ vis_logger.py           단계별 타임스탬프 CSV 로깅 (event_id 조인)
+│  ├─ config.py               공통 설정 (UDP·카메라·임계값)
+│  └─ yolov8n.pt              YOLOv8n 사전학습 가중치
+├─ tests/                     단위 테스트 (conftest 가 src/ 를 import 경로에 추가)
 ├─ simulation/                4-3 몬테카를로 시뮬레이션 (plot_simulation.py → flourish_*.csv, 차트 PNG)
 └─ experiments/               ★ 제안서 근거 자료
    ├─ latency_20260720/       4-2 종단간 지연 실측 (raw CSV, 분석, 그래프, 보고서)
@@ -245,13 +248,13 @@ python sender.py --input <영상경로>
 
 ```powershell
 # 트랙 A — 단일 기기, 프로세스 분리 (구간 분해)
-python receiver.py --csv experiments\latency_20260720\raw\trackA_receiver.csv --exit-after 230
-python sender.py --input <영상경로> --target <실제_WiFi_IP> `
+python src/receiver.py --csv experiments\latency_20260720\raw\trackA_receiver.csv --exit-after 230
+python src/sender.py --input <영상경로> --target <실제_WiFi_IP> `
                  --max-events 200 --warmup 30 --force-emit `
                  --csv experiments\latency_20260720\raw\trackA_sender.csv
 
-# 트랙 B — 2기기 에코백 RTT (폰에서 receiver_ack_termux.py 실행 후)
-python sender.py --input <영상경로> --target <폰_IP> `
+# 트랙 B — 2기기 에코백 RTT (폰에서 src/receiver_ack_termux.py 실행 후)
+python src/sender.py --input <영상경로> --target <폰_IP> `
                  --max-events 200 --warmup 30 --force-emit --ack `
                  --csv experiments\latency_20260720\raw\trackB_sender.csv
 

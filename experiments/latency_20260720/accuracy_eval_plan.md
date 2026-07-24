@@ -67,7 +67,7 @@ CARLA는 시뮬레이터가 모든 액터의 3D 바운딩박스·클래스·가�
       본 PC는 Intel Iris Xe 내장 그래픽이므로 실행 성능이 제약될 수 있음)
 - [ ] CARLA Python API 휠 설치 (`carla-0.9.16-cp312-cp312-win_amd64.whl` 확인됨,
       단 현재 Python은 3.14 — **버전 불일치 가능성 있음, 별도 가상환경 필요**)
-- [ ] 3D→2D bbox 투영 코드 검증 (기존 `geometry.py`의 투영 함수 재사용 가능 여부)
+- [ ] 3D→2D bbox 투영 코드 검증 (기존 `src/geometry.py`의 투영 함수 재사용 가능 여부)
 
 ## 5. 다음 턴 예고
 
