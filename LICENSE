@@ -19,16 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-이 라이선스는 본 저장소의 **소스 코드**에 적용됩니다.
-
-다음은 적용 대상이 아닙니다:
-
-- 측정에 사용한 제3자 스톡 영상 (Mixkit). 저장소에 포함되어 있지 않으며
-  (`.gitignore`로 제외), 지연시간 측정용 고정 입력으로만 사용했습니다.
-  출처는 `experiments/latency_20260720/latency_summary.md` 1.4절에 기록되어 있습니다.
-- 한국도로교통공단 공공데이터 (`experiments/cheongju_heatmap/`). 공공데이터포털
-  이용약관을 따르며, 출처는 각 산출물에 표기되어 있습니다.
-- 블랙박스 주행 영상. 용량 문제로 저장소에 포함하지 않았습니다.
